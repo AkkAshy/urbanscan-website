@@ -5,12 +5,13 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { slides } from "@/data/slides";
 import { useFullpage } from "./FullpageContainer";
+import { useLocale } from "@/lib/i18n/context";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { activeIndex, scrollToSlide } = useFullpage();
+  const { locale, setLocale, t } = useLocale();
 
-  /* Навбар полупрозрачный, если не на Hero */
   const showBg = activeIndex > 0;
   const navItems = slides.filter((s) => s.navLabel);
 
@@ -18,6 +19,16 @@ export function Navbar() {
     const idx = slides.findIndex((s) => s.id === slideId);
     if (idx !== -1) scrollToSlide(idx);
     setMobileOpen(false);
+  };
+
+  /** Получить переведённый лейбл навигации */
+  const getNavLabel = (slideId: string) => {
+    const key = slideId as keyof typeof t.nav;
+    return t.nav[key] ?? slideId;
+  };
+
+  const toggleLocale = () => {
+    setLocale(locale === "uz" ? "ru" : "uz");
   };
 
   return (
@@ -37,36 +48,56 @@ export function Navbar() {
         </button>
 
         {/* Десктоп-меню */}
-        <ul className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => {
-            const idx = slides.findIndex((s) => s.id === item.id);
-            const isActive = idx === activeIndex;
-            return (
-              <li key={item.id}>
-                <button
-                  onClick={() => handleNav(item.id)}
-                  className={cn(
-                    "text-sm transition-colors",
-                    isActive
-                      ? "text-white font-medium"
-                      : "text-text-secondary hover:text-white"
-                  )}
-                >
-                  {item.navLabel}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="hidden items-center gap-8 md:flex">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item) => {
+              const idx = slides.findIndex((s) => s.id === item.id);
+              const isActive = idx === activeIndex;
+              return (
+                <li key={item.id}>
+                  <button
+                    onClick={() => handleNav(item.id)}
+                    className={cn(
+                      "text-sm transition-colors",
+                      isActive
+                        ? "text-white font-medium"
+                        : "text-text-secondary hover:text-white"
+                    )}
+                  >
+                    {getNavLabel(item.id)}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
 
-        {/* Мобильный бургер */}
-        <button
-          className="text-white md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Меню"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Переключатель языка */}
+          <button
+            onClick={toggleLocale}
+            className="flex items-center gap-1 rounded-full border border-surface-border bg-surface-card/50 px-3 py-1 text-xs font-medium text-text-secondary transition-colors hover:text-white"
+          >
+            <span className={cn(locale === "uz" && "text-white font-semibold")}>UZ</span>
+            <span className="text-text-muted">/</span>
+            <span className={cn(locale === "ru" && "text-white font-semibold")}>RU</span>
+          </button>
+        </div>
+
+        {/* Мобильный: переключатель + бургер */}
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            onClick={toggleLocale}
+            className="rounded-full border border-surface-border bg-surface-card/50 px-2.5 py-1 text-xs font-medium text-text-secondary"
+          >
+            {locale === "uz" ? "RU" : "UZ"}
+          </button>
+          <button
+            className="text-white"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={t.nav.menu}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Мобильное меню */}
@@ -79,7 +110,7 @@ export function Navbar() {
                   onClick={() => handleNav(item.id)}
                   className="text-sm text-text-secondary hover:text-white transition-colors"
                 >
-                  {item.navLabel}
+                  {getNavLabel(item.id)}
                 </button>
               </li>
             ))}

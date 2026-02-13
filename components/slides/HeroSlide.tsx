@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { SlideWrapper } from "@/components/layout/SlideWrapper";
 import { AnimateOnScroll } from "@/components/shared/AnimateOnScroll";
 import { useFullpage } from "@/components/layout/FullpageContainer";
+import { useT } from "@/lib/i18n/context";
 
 export function HeroSlide() {
   const { scrollToSlide } = useFullpage();
+  const t = useT();
 
   return (
     <SlideWrapper id="hero" index={0} variant="darker" className="relative">
@@ -32,22 +34,21 @@ export function HeroSlide() {
           <AnimateOnScroll delay={0}>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface-card/50 px-4 py-1.5 text-xs text-text-secondary">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              VR-визуализация LiDAR-сканов
+              {t.hero.badge}
             </div>
           </AnimateOnScroll>
 
           {/* Заголовок */}
           <AnimateOnScroll delay={0.15}>
             <h1 className="text-6xl font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
-              Urban<span className="text-brand-500">Scan</span>
+              {t.hero.title}<span className="text-brand-500">{t.hero.titleAccent}</span>
             </h1>
           </AnimateOnScroll>
 
           {/* Подзаголовок */}
           <AnimateOnScroll delay={0.3}>
             <p className="mt-6 max-w-xl text-xl text-text-secondary md:text-2xl">
-              Шагните в реальность. Загрузите 3D-скан — и пройдитесь по нему
-              в VR, как будто вы там.
+              {t.hero.subtitle}
             </p>
           </AnimateOnScroll>
 
@@ -59,7 +60,7 @@ export function HeroSlide() {
                 onClick={() => scrollToSlide(1)}
                 className="bg-brand-500 text-white hover:bg-brand-600 px-8"
               >
-                Узнать больше
+                {t.hero.cta}
               </Button>
               <Button
                 size="lg"
@@ -67,7 +68,7 @@ export function HeroSlide() {
                 onClick={() => scrollToSlide(5)}
                 className="border-surface-border text-white hover:bg-surface-card"
               >
-                Связаться с нами
+                {t.hero.ctaSecondary}
               </Button>
             </div>
           </AnimateOnScroll>
@@ -78,10 +79,10 @@ export function HeroSlide() {
           <div className="flex items-center justify-center">
             <Image
               src="/images/lidar-scanner.png"
-              alt="Share S20 SLAM — LiDAR сканер"
-              width={600}
-              height={720}
-              className="max-h-[75vh] w-auto object-contain drop-shadow-[0_0_40px_rgba(0,102,255,0.2)]"
+              alt="Share S20 SLAM — LiDAR"
+              width={720}
+              height={860}
+              className="h-[70vh] min-w-[280px] object-contain drop-shadow-[0_0_50px_rgba(0,102,255,0.25)] md:h-[85vh]"
               priority
             />
           </div>
@@ -92,7 +93,7 @@ export function HeroSlide() {
       <button
         onClick={() => scrollToSlide(1)}
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-text-muted animate-bounce-slow"
-        aria-label="Прокрутить вниз"
+        aria-label={t.hero.scrollAriaLabel}
       >
         <ChevronDown size={28} />
       </button>

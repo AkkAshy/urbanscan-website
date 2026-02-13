@@ -7,12 +7,20 @@ export interface SpecRow {
   futureProof?: string;
 }
 
+interface TableHeaders {
+  component: string;
+  minimum: string;
+  recommended: string;
+  futureProof: string;
+}
+
 interface SpecTableProps {
   specs: SpecRow[];
   showFutureProof?: boolean;
   className?: string;
-  /** Компактный режим — меньше отступы и шрифт */
   compact?: boolean;
+  /** Переведённые заголовки таблицы */
+  headers?: TableHeaders;
 }
 
 export function SpecTable({
@@ -20,10 +28,19 @@ export function SpecTable({
   showFutureProof = false,
   className,
   compact = false,
+  headers,
 }: SpecTableProps) {
   const cellPy = compact ? "py-1.5" : "py-3";
   const cellPb = compact ? "pb-2" : "pb-3";
   const textSize = compact ? "text-xs" : "text-sm";
+
+  /* Фоллбэк на русские заголовки если headers не передан */
+  const h = headers ?? {
+    component: "Компонент",
+    minimum: "Минимум",
+    recommended: "Рекомендуемые",
+    futureProof: "Запас",
+  };
 
   return (
     <div className={cn("overflow-x-auto", className)}>
@@ -31,15 +48,15 @@ export function SpecTable({
         <thead>
           <tr className="border-b border-surface-border">
             <th className={cn(cellPb, "pr-3 font-medium text-text-muted")}>
-              Компонент
+              {h.component}
             </th>
-            <th className={cn(cellPb, "pr-3 font-medium text-text-muted")}>Минимум</th>
+            <th className={cn(cellPb, "pr-3 font-medium text-text-muted")}>{h.minimum}</th>
             <th className={cn(cellPb, "pr-3 font-medium text-text-muted")}>
-              Рекомендуемые
+              {h.recommended}
             </th>
             {showFutureProof && (
               <th className={cn(cellPb, "font-medium text-text-muted")}>
-                Запас
+                {h.futureProof}
               </th>
             )}
           </tr>

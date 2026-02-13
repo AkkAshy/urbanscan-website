@@ -1,7 +1,10 @@
 import puppeteer from "puppeteer";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  /* Язык из query-параметра: ?lang=ru или ?lang=uz (по умолчанию uz) */
+  const lang = request.nextUrl.searchParams.get("lang") === "ru" ? "ru" : "uz";
+
   let browser;
 
   try {
@@ -14,6 +17,11 @@ export async function GET() {
 
     /* Широкий viewport — презентационный формат 16:9 */
     await page.setViewport({ width: 1920, height: 1080 });
+
+    /* Устанавливаем localStorage ДО загрузки страницы, чтобы React подхватил нужный язык */
+    await page.evaluateOnNewDocument((locale: string) => {
+      localStorage.setItem("urbanscan-locale", locale);
+    }, lang);
 
     /* Открываем сайт и ждём загрузки всех ресурсов (картинки, шрифты) */
     await page.goto("http://localhost:3000", {
@@ -31,9 +39,13 @@ export async function GET() {
       /* SlideDots */
       const dots = document.querySelector("[class*='fixed'][class*='right-']");
       if (dots) (dots as HTMLElement).style.display = "none";
-      /* Стрелка скролла на Hero */
-      const arrow = document.querySelector("[aria-label='Прокрутить вниз']");
-      if (arrow) (arrow as HTMLElement).style.display = "none";
+      /* Стрелка скролла на Hero — последняя кнопка внутри #hero */
+      const heroSlide = document.getElementById("hero");
+      if (heroSlide) {
+        const buttons = heroSlide.querySelectorAll(":scope > button");
+        const arrow = buttons[buttons.length - 1];
+        if (arrow) (arrow as HTMLElement).style.display = "none";
+      }
 
       /* Разворачиваем scroll-snap контейнер, чтобы все слайды были видны */
       const container = document.querySelector(".fullpage-container");
@@ -114,10 +126,10 @@ export async function GET() {
 
     await browser.close();
 
-    return new NextResponse(pdf, {
+    return new NextResponse(Buffer.from(pdf), {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": "attachment; filename=UrbanScan-Presentation.pdf",
+        "Content-Disposition": `attachment; filename=UrbanScan-Presentation-${lang.toUpperCase()}.pdf`,
       },
     });
   } catch (error) {

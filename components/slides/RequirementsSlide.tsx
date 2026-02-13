@@ -5,17 +5,16 @@ import { SlideWrapper } from "@/components/layout/SlideWrapper";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SpecTable } from "@/components/shared/SpecTable";
 import { AnimateOnScroll } from "@/components/shared/AnimateOnScroll";
-import { requirements } from "@/data/requirements";
+import { useT } from "@/lib/i18n/context";
 
 export function RequirementsSlide() {
-  const laptop = requirements.find((r) => r.id === "laptop")!;
-  const desktop = requirements.find((r) => r.id === "desktop")!;
+  const t = useT();
 
   return (
     <SlideWrapper id="requirements" index={4} variant="gradient">
       <SectionHeading
-        title="Системные требования"
-        subtitle="Два устройства — для сканирования и для VR-просмотра."
+        title={t.requirements.title}
+        subtitle={t.requirements.subtitle}
         className="mb-8 md:mb-10"
       />
 
@@ -28,11 +27,15 @@ export function RequirementsSlide() {
                 <Laptop className="h-5 w-5 text-brand-400" />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-white">{laptop.title}</h3>
-                <p className="text-sm text-text-muted">{laptop.subtitle}</p>
+                <h3 className="text-base font-semibold text-white">{t.requirements.laptop.title}</h3>
+                <p className="text-sm text-text-muted">{t.requirements.laptop.subtitle}</p>
               </div>
             </div>
-            <SpecTable specs={laptop.specs} showFutureProof={laptop.showFutureProof} />
+            <SpecTable
+              specs={t.requirements.laptop.specs}
+              showFutureProof={false}
+              headers={t.requirements.table}
+            />
           </div>
         </AnimateOnScroll>
 
@@ -44,11 +47,15 @@ export function RequirementsSlide() {
                 <Monitor className="h-5 w-5 text-brand-400" />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-white">{desktop.title}</h3>
-                <p className="text-sm text-text-muted">{desktop.subtitle}</p>
+                <h3 className="text-base font-semibold text-white">{t.requirements.desktop.title}</h3>
+                <p className="text-sm text-text-muted">{t.requirements.desktop.subtitle}</p>
               </div>
             </div>
-            <SpecTable specs={desktop.specs} showFutureProof={desktop.showFutureProof} />
+            <SpecTable
+              specs={t.requirements.desktop.specs}
+              showFutureProof={true}
+              headers={t.requirements.table}
+            />
           </div>
         </AnimateOnScroll>
       </div>

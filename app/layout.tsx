@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LocaleProvider } from "@/lib/i18n/context";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,11 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="uz" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        {children}
+        <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>
   );
