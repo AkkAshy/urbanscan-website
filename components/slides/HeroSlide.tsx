@@ -77,11 +77,11 @@ export function HeroSlide() {
         <AnimateOnScroll variant="slideRight" delay={0.2}>
           <div className="flex items-center justify-center">
             <Image
-              src="/images/lidar-scanner.jpg"
+              src="/images/lidar-scanner.png"
               alt="Share S20 SLAM — LiDAR сканер"
               width={500}
               height={600}
-              className="max-h-[60vh] w-auto object-contain mix-blend-lighten"
+              className="max-h-[60vh] w-auto object-contain drop-shadow-[0_0_30px_rgba(0,102,255,0.15)]"
               priority
             />
           </div>
