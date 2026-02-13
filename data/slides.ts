@@ -7,10 +7,9 @@ export interface SlideMetadata {
 
 export const slides: SlideMetadata[] = [
   { id: "hero", label: "Главная" },
+  { id: "device", label: "Устройство", navLabel: "Устройство" },
   { id: "about", label: "О продукте", navLabel: "О продукте" },
-  { id: "workflow", label: "Как работает", navLabel: "Как работает" },
   { id: "features", label: "Возможности", navLabel: "Возможности" },
   { id: "requirements", label: "Требования" },
-  { id: "architecture", label: "Архитектура" },
   { id: "contact", label: "Контакты", navLabel: "Контакты" },
 ];

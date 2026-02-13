@@ -1,10 +1,10 @@
 import {
-  FileBox,
-  Settings2,
-  Move3D,
-  Gauge,
-  Headset,
-  Plug,
+  MapPin,
+  Car,
+  Presentation,
+  Clock,
+  Users,
+  ShieldCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -17,45 +17,45 @@ export interface Feature {
 
 export const features: Feature[] = [
   {
-    id: "runtime-import",
-    icon: FileBox,
-    title: "Runtime импорт OBJ",
+    id: "no-travel",
+    icon: Car,
+    title: "Не нужно ехать на объект",
     description:
-      "Загружайте файлы 100–500+ МБ прямо во время работы, без перезапуска приложения. Асинхронная загрузка с прогрессом.",
+      "Покажите клиенту здание, склад или стройку — не выходя из офиса. Один раз отсканировали, показываете сколько угодно раз.",
   },
   {
-    id: "auto-setup",
-    icon: Settings2,
-    title: "Авто-подготовка сцены",
+    id: "wow-effect",
+    icon: Presentation,
+    title: "Впечатляющие презентации",
     description:
-      "Нормализация, центрирование, освещение и коллизии настраиваются автоматически. Ничего не нужно делать вручную.",
+      "Заказчик надевает шлем и сам гуляет по объекту. Это убеждает сильнее, чем любые фотографии, чертежи или видео.",
   },
   {
-    id: "vr-locomotion",
-    icon: Move3D,
-    title: "VR-перемещение",
+    id: "save-time",
+    icon: Clock,
+    title: "Экономия времени и денег",
     description:
-      "Плавное перемещение (smooth locomotion) и телепортация. Управление с контроллеров VR, без укачивания.",
+      "Не нужно организовывать повторные выезды. Сканирование занимает минуты, а результат доступен в любой момент.",
   },
   {
-    id: "performance",
-    icon: Gauge,
-    title: "72–90 FPS",
+    id: "remote-access",
+    icon: MapPin,
+    title: "Доступ из любой точки",
     description:
-      "Оптимизировано для стабильных 72 FPS на Quest через Link и 90 FPS на PCVR. Без лагов и подёргиваний.",
+      "Объект в другом городе? Не проблема. Передайте файл — и коллеги или клиенты увидят всё своими глазами в VR.",
   },
   {
-    id: "multi-headset",
-    icon: Headset,
-    title: "Мульти-шлемы",
+    id: "teamwork",
+    icon: Users,
+    title: "Понятно каждому",
     description:
-      "Поддержка Meta Quest (через Link/AirLink), HTC Vive, Valve Index и других PCVR-шлемов.",
+      "Не нужно разбираться в чертежах. Любой человек наденет шлем и сразу поймёт, как выглядит пространство.",
   },
   {
-    id: "openxr",
-    icon: Plug,
-    title: "OpenXR / SteamVR",
+    id: "accurate",
+    icon: ShieldCheck,
+    title: "Точная копия реальности",
     description:
-      "Построен на стандарте OpenXR с поддержкой SteamVR. Совместим с любым OpenXR-совместимым устройством.",
+      "Сканер создаёт детальную 3D-копию помещения. В VR вы видите реальные размеры, пропорции и детали объекта.",
   },
 ];

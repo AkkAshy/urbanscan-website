@@ -10,8 +10,8 @@ export function FeaturesSlide() {
   return (
     <SlideWrapper id="features" index={3} variant="dark">
       <SectionHeading
-        title="Возможности"
-        subtitle="Всё что нужно для работы с 3D-сканами в виртуальной реальности."
+        title="Почему это удобно"
+        subtitle="Реальные преимущества для вашего бизнеса — без сложных технологий."
       />
 
       <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

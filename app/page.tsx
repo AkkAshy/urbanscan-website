@@ -4,12 +4,11 @@ import { FullpageContainer } from "@/components/layout/FullpageContainer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SlideDots } from "@/components/layout/SlideDots";
 import { HeroSlide } from "@/components/slides/HeroSlide";
+import { DeviceSlide } from "@/components/slides/DeviceSlide";
 import { AboutSlide } from "@/components/slides/AboutSlide";
-import { WorkflowSlide } from "@/components/slides/WorkflowSlide";
+
 import { FeaturesSlide } from "@/components/slides/FeaturesSlide";
 import { RequirementsSlide } from "@/components/slides/RequirementsSlide";
-import { ArchitectureSlide } from "@/components/slides/ArchitectureSlide";
-
 import { ContactSlide } from "@/components/slides/ContactSlide";
 import { slides } from "@/data/slides";
 
@@ -19,11 +18,10 @@ export default function Home() {
       <Navbar />
       <SlideDots />
       <HeroSlide />
+      <DeviceSlide />
       <AboutSlide />
-      <WorkflowSlide />
       <FeaturesSlide />
       <RequirementsSlide />
-      <ArchitectureSlide />
       <ContactSlide />
     </FullpageContainer>
   );

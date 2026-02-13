@@ -44,7 +44,13 @@ export function useActiveSlide(containerRef: RefObject<HTMLElement | null>) {
       const slide = container.querySelector(
         `[data-slide-index="${index}"]`
       ) as HTMLElement;
-      slide?.scrollIntoView({ behavior: "smooth" });
+      if (!slide) return;
+
+      /* scrollTo на точную позицию — надёжнее чем scrollIntoView с scroll-snap */
+      container.scrollTo({
+        top: slide.offsetTop,
+        behavior: "smooth",
+      });
     },
     [containerRef]
   );

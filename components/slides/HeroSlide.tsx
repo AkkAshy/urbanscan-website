@@ -38,14 +38,14 @@ export function HeroSlide() {
 
           {/* Заголовок */}
           <AnimateOnScroll delay={0.15}>
-            <h1 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="text-6xl font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
               Urban<span className="text-brand-500">Scan</span>
             </h1>
           </AnimateOnScroll>
 
           {/* Подзаголовок */}
           <AnimateOnScroll delay={0.3}>
-            <p className="mt-6 max-w-xl text-lg text-text-secondary md:text-xl">
+            <p className="mt-6 max-w-xl text-xl text-text-secondary md:text-2xl">
               Шагните в реальность. Загрузите 3D-скан — и пройдитесь по нему
               в VR, как будто вы там.
             </p>
@@ -64,7 +64,7 @@ export function HeroSlide() {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => scrollToSlide(6)}
+                onClick={() => scrollToSlide(5)}
                 className="border-surface-border text-white hover:bg-surface-card"
               >
                 Связаться с нами
@@ -79,9 +79,9 @@ export function HeroSlide() {
             <Image
               src="/images/lidar-scanner.png"
               alt="Share S20 SLAM — LiDAR сканер"
-              width={500}
-              height={600}
-              className="max-h-[60vh] w-auto object-contain drop-shadow-[0_0_30px_rgba(0,102,255,0.15)]"
+              width={600}
+              height={720}
+              className="max-h-[75vh] w-auto object-contain drop-shadow-[0_0_40px_rgba(0,102,255,0.2)]"
               priority
             />
           </div>

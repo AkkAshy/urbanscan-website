@@ -130,3 +130,24 @@
 .animate-bounce-slow {
   animation: bounce-slow 2s ease-in-out infinite;
 }
+
+/* PDF print styles — каждый слайд = отдельная страница */
+@media print {
+  .fullpage-container {
+    overflow: visible;
+    height: auto;
+    scroll-snap-type: none;
+  }
+
+  .slide {
+    scroll-snap-align: none;
+    min-height: 100vh;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
