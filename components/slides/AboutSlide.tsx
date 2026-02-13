@@ -1,6 +1,6 @@
 "use client";
 
-import { MonitorOff, FileBox, Glasses } from "lucide-react";
+import { ScanLine, AppWindow, Glasses } from "lucide-react";
 import { SlideWrapper } from "@/components/layout/SlideWrapper";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { FeatureCard } from "@/components/shared/FeatureCard";
@@ -9,22 +9,22 @@ import { AnimateOnScroll } from "@/components/shared/AnimateOnScroll";
 
 const valueProps = [
   {
-    icon: MonitorOff,
-    title: "Без Unity Editor",
+    icon: ScanLine,
+    title: "Сканируем пространство",
     description:
-      "Самостоятельное приложение. Не нужно устанавливать Unity — просто запустите программу и загрузите файл.",
+      "Специальный прибор за считанные минуты создаёт точную цифровую копию любого помещения — офиса, склада, стройки или целого здания.",
   },
   {
-    icon: FileBox,
-    title: "Любой OBJ-файл",
+    icon: AppWindow,
+    title: "Открываем одной кнопкой",
     description:
-      "Работает с файлами из любого LiDAR/SLAM-сканера. Формат OBJ — универсальный стандарт 3D-моделей.",
+      "Готовый скан загружается в наше приложение. Никаких сложных программ — просто нажмите «Импорт» и файл откроется.",
   },
   {
     icon: Glasses,
-    title: "VR-погружение",
+    title: "Гуляем внутри в VR",
     description:
-      "Наденьте шлем и окажитесь внутри отсканированного пространства. Ходите, осматривайте, показывайте.",
+      "Наденьте VR-шлем — и вы окажетесь внутри отсканированного пространства. Ходите, смотрите по сторонам, показывайте заказчику.",
   },
 ];
 
@@ -33,7 +33,7 @@ export function AboutSlide() {
     <SlideWrapper id="about" index={1} variant="dark">
       <SectionHeading
         title="Что такое UrbanScan?"
-        subtitle="Кроссплатформенное VR-приложение для интерактивного просмотра 3D-сцен, полученных из LiDAR и SLAM сканеров."
+        subtitle="Мы превращаем реальные помещения в виртуальные прогулки. Отсканировал — надел шлем — и ты уже внутри."
       />
 
       <StaggerContainer className="grid gap-6 md:grid-cols-3">
@@ -50,8 +50,8 @@ export function AboutSlide() {
 
       <AnimateOnScroll delay={0.4}>
         <p className="mt-12 text-center text-sm text-text-muted">
-          Для инженеров, архитекторов, разработчиков цифровых двойников
-          и всех, кто работает с LiDAR/SLAM-сканерами.
+          Подходит для строителей, архитекторов, риелторов и всех,
+          кому нужно показать объект удалённо — без выезда на место.
         </p>
       </AnimateOnScroll>
     </SlideWrapper>
