@@ -12,6 +12,5 @@ export const slides: SlideMetadata[] = [
   { id: "features", label: "Возможности", navLabel: "Возможности" },
   { id: "requirements", label: "Требования" },
   { id: "architecture", label: "Архитектура" },
-  { id: "roadmap", label: "Дорожная карта" },
   { id: "contact", label: "Контакты", navLabel: "Контакты" },
 ];

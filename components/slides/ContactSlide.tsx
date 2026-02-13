@@ -5,7 +5,7 @@ import { AnimateOnScroll } from "@/components/shared/AnimateOnScroll";
 
 export function ContactSlide() {
   return (
-    <SlideWrapper id="contact" index={7} variant="darker" raw>
+    <SlideWrapper id="contact" index={6} variant="darker" raw>
       {/* Фоновый градиент — покрывает нижнюю часть */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,_rgba(0,102,255,0.12)_0%,_transparent_100%)]" />
 

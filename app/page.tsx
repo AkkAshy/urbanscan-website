@@ -9,7 +9,7 @@ import { WorkflowSlide } from "@/components/slides/WorkflowSlide";
 import { FeaturesSlide } from "@/components/slides/FeaturesSlide";
 import { RequirementsSlide } from "@/components/slides/RequirementsSlide";
 import { ArchitectureSlide } from "@/components/slides/ArchitectureSlide";
-import { RoadmapSlide } from "@/components/slides/RoadmapSlide";
+
 import { ContactSlide } from "@/components/slides/ContactSlide";
 import { slides } from "@/data/slides";
 
@@ -24,7 +24,6 @@ export default function Home() {
       <FeaturesSlide />
       <RequirementsSlide />
       <ArchitectureSlide />
-      <RoadmapSlide />
       <ContactSlide />
     </FullpageContainer>
   );
